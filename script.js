@@ -59,10 +59,26 @@ document.querySelector('.modal-close')?.addEventListener('click',closeModal);
 document.querySelector('.modal-backdrop')?.addEventListener('click',closeModal);
 document.addEventListener('keydown',e=>{if(e.key==='Escape')closeModal()});
 
-document.querySelector('.contact-form')?.addEventListener('submit', e => {
+document.querySelector('.contact-form')?.addEventListener('submit', async e => {
   e.preventDefault();
-  const msg=e.currentTarget.querySelector('.form-message');
-  msg.textContent='Mensagem preparada — liga este formulário ao teu serviço de email antes de publicar.';
+  const form = e.currentTarget;
+  const msg = form.querySelector('.form-message');
+  msg.textContent = 'A enviar...';
+  try {
+    const response = await fetch('https://formspree.io/f/moejablz', {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { Accept: 'application/json' }
+    });
+    if (response.ok) {
+      msg.textContent = 'Mensagem enviada! Obrigada, respondemos em breve.';
+      form.reset();
+    } else {
+      msg.textContent = 'Não foi possível enviar. Tenta novamente.';
+    }
+  } catch {
+    msg.textContent = 'Erro de ligação. Tenta novamente.';
+  }
 });
 
 document.querySelectorAll('.minute button').forEach(button => {

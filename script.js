@@ -83,6 +83,9 @@ document.querySelector('.contact-form')?.addEventListener('submit', async e => {
 
 document.querySelectorAll('.minute button').forEach(button => {
   button.addEventListener('click', () => {
-    alert('Aqui podes ligar cada botão ao PDF ou página correspondente da ata.');
+    const pdf = button.dataset.pdf;
+    if (pdf) {
+      window.open(pdf, '_blank', 'noopener');
+    }
   });
 });

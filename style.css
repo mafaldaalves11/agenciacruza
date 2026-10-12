@@ -3,7 +3,7 @@
 html{scroll-behavior:smooth}
 body{font-family:var(--sans);background:var(--cream);color:var(--black);overflow-x:hidden}
 a{text-decoration:none;color:inherit}button,input,textarea{font:inherit}
-.header{position:fixed;top:0;left:0;width:100%;z-index:50;height:78px;padding:12px 4vw;display:flex;align-items:center;justify-content:space-between;mix-blend-mode:multiply}
+.header{position:fixed;top:0;left:0;width:100%;z-index:50;height:78px;padding:12px 4vw;display:flex;align-items:center;justify-content:space-between;mix-blend-mode:difference}
 .brand-logo{width:72px;height:54px;object-fit:contain}
 .nav{display:flex;gap:25px;font-size:12px;text-transform:uppercase;letter-spacing:.08em;font-weight:600}
 .nav a{position:relative}.nav a:after{content:"";position:absolute;left:0;bottom:-5px;width:0;height:1px;background:var(--black);transition:.3s}.nav a:hover:after{width:100%}
@@ -59,3 +59,43 @@ a{text-decoration:none;color:inherit}button,input,textarea{font:inherit}
 .cursor-dot,.cursor-ring{position:fixed;pointer-events:none;z-index:200;transform:translate(-50%,-50%);border-radius:50%}.cursor-dot{width:5px;height:5px;background:var(--red)}.cursor-ring{width:30px;height:30px;border:1px solid var(--red);transition:width .2s,height .2s}.cursor-ring.hover{width:55px;height:55px}
 @media(max-width:900px){.nav{position:fixed;top:0;right:0;height:100vh;width:70%;background:var(--cream);padding:110px 35px;flex-direction:column;gap:25px;font-size:18px;transform:translateX(100%);transition:.4s}.nav.open{transform:translateX(0)}.menu-toggle{display:flex;flex-direction:column;gap:6px;z-index:60}.menu-toggle span{width:28px;height:2px;background:var(--black)}.hero{padding-left:5vw;padding-right:5vw}.section{padding:90px 5vw}.about-grid,.contact-grid{grid-template-columns:1fr;gap:50px}.team-grid{grid-template-columns:repeat(2,1fr)}.portfolio-grid{grid-template-columns:1fr}.project-large{grid-row:auto}.project-wide{grid-column:auto}.project-large .project-image{height:450px}.service{grid-template-columns:45px 1fr}.service p{grid-column:2}.minute{grid-template-columns:70px 100px 1fr}.minute p{display:none}.minute button{grid-column:3}.footer{padding-left:5vw;padding-right:5vw}}
 @media(max-width:600px){.header{height:65px;padding:8px 5vw}.brand-logo{width:55px;height:45px}.hero{padding-top:120px}.hero-title{font-size:27vw}.hero-symbol{width:100px;height:100px;right:0;top:-10px}.shape{width:70px;height:70px;border-width:16px}.shape-overlap{width:48px;height:30px;left:28px;top:35px}.hero-slogan{font-size:31px}.hero-intro{font-size:13px}.section-label{margin-bottom:45px}.section-heading,.services-intro,.minutes-top{display:block}.section-note{text-align:left;margin-top:25px}.team-grid{grid-template-columns:1fr;gap:45px}.photo-placeholder{height:420px}.word-field{height:360px}.word-field span{font-size:28px!important}.portfolio-grid{gap:45px}.project-image,.project-large .project-image{height:360px}.service{grid-template-columns:35px 1fr;padding:22px 0}.service h3{font-size:25px}.service p{font-size:12px}.minute{grid-template-columns:65px 1fr;gap:8px 15px}.minute h3,.minute button{grid-column:2}.minute button{justify-self:start}.manifesto{padding:90px 5vw}.manifesto-text{margin-top:70px}.manifesto-text p{margin-bottom:55px}.footer{grid-template-columns:1fr;gap:35px}.footer-slogan{font-size:25px}.footer-brand strong{font-size:60px}.footer-bottom{grid-column:auto;flex-direction:column;gap:15px}.cursor-dot,.cursor-ring{display:none}}
+
+.nav,
+.nav a {
+  color: #fff;
+}
+.nav a:after {
+  background: #fff;
+}
+.menu-toggle span {
+  background: #fff;
+}
+
+/* no telemóvel o painel do menu tem fundo creme, e com difference ficava com cores estranhas */
+@media (max-width: 900px) {
+  .header {
+    mix-blend-mode: normal;
+  }
+  .nav,
+  .nav a {
+    color: var(--black);
+  }
+  .nav a:after {
+    background: var(--black);
+  }
+}
+
+.header {
+  justify-content: flex-end;
+}
+
+.brand {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 51;
+  height: 78px;
+  padding: 12px 4vw;
+  display: flex;
+  align-items: center;
+... (9 lines left)
